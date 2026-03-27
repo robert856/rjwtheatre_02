@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robert James Williams</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #fff;
+      color: #111;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 3rem 2rem 2rem;
+      border-bottom: 1px solid #e0e0e0;
+      text-align: center;
+    }
+    .author-name {
+      font-family: 'Bodoni Moda', serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #111;
+      margin-bottom: 0;
+    }
+    .site-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: #111;
+      line-height: 1.2;
+    }
+
+    /* ── SHOW BLOCK ── */
+    .show {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .show-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      font-weight: 400;
+      color: #555;
+      margin-bottom: 2rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── VIDEO ── */
+    .video-frame {
+      position: relative;
+      padding-bottom: 56.25%;
+      background: #000;
+      margin-bottom: 2rem;
+    }
+    .video-frame iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    .show-description {
+      font-size: clamp(0.875rem, 1.8vw, 1rem);
+      line-height: 1.75;
+      color: #444;
+      margin-bottom: 1.25rem;
+    }
+    .show-description:last-of-type { margin-bottom: 2rem; }
+
+    /* ── CAROUSEL (3-up grid) ── */
+    .carousel-outer { position: relative; }
+    .carousel-wrapper { overflow: hidden; }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    .carousel-item {
+      flex: 0 0 calc(100% / 3);
+      aspect-ratio: 4/3;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 3px solid #fff;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+    }
+    .carousel-item:last-child { border-right: none; }
+    .carousel-item:hover .item-hover { opacity: 1; }
+
+    /* hover overlay */
+    .item-hover {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.12);
+      opacity: 0;
+      transition: opacity 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .item-hover svg {
+      width: 28px; height: 28px;
+      color: #fff;
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
+    }
+
+    .carousel-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* placeholder when no real image */
+    .slide-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0.22;
+      pointer-events: none;
+      width: 100%; height: 100%;
+      justify-content: center;
+    }
+    .slide-placeholder svg { width: 36px; height: 36px; }
+    .slide-placeholder span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #111;
+    }
+
+    /* carousel nav arrows */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px; height: 36px;
+      background: #fff;
+      border: 1px solid #ccc;
+      color: #111;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .carousel-btn:hover { background: #111; color: #fff; border-color: #111; }
+    .carousel-btn:disabled { opacity: 0.25; cursor: default; }
+    .carousel-btn:disabled:hover { background: #fff; color: #111; border-color: #ccc; }
+    .carousel-btn.prev { left: -46px; }
+    .carousel-btn.next { right: -46px; }
+    @media (max-width: 700px) {
+      .carousel-btn.prev { left: 0; }
+      .carousel-btn.next { right: 0; }
+    }
+
+    /* dots */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #ccc;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .dot.active { background: #111; transform: scale(1.4); }
+
+    .carousel-counter {
+      text-align: right;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: #bbb;
+      margin-top: 0.5rem;
+    }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #fff;
+      z-index: 1000;
+      flex-direction: column;
+    }
+    #lightbox.open { display: flex; }
+
+    /* bottom bar: ← Back → grouped in center */
+    .lb-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid #e0e0e0;
+      flex-shrink: 0;
+    }
+    .lb-arrow {
+      width: 52px; height: 52px;
+      background: #111;
+      border: none;
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, opacity 0.15s;
+    }
+    .lb-arrow:hover { background: #333; }
+    .lb-arrow:disabled { opacity: 0.2; cursor: default; }
+    .lb-arrow:disabled:hover { background: #111; }
+
+    .lb-back {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #111;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem 0.8rem;
+      transition: opacity 0.15s;
+    }
+    .lb-back:hover { opacity: 0.45; }
+
+    /* image area */
+    .lb-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+    .lb-stage img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* placeholder in lightbox */
+    .lb-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      opacity: 0.2;
+    }
+    .lb-placeholder svg { width: 64px; height: 64px; }
+    .lb-placeholder span {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* counter in lightbox */
+    .lb-counter {
+      text-align: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: #bbb;
+      padding: 0 0 1.25rem;
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #bbb;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ LIGHTBOX ══ -->
+  <div id="lightbox">
+    <div class="lb-stage" id="lb-stage"></div>
+    <p class="lb-counter" id="lb-counter"></p>
+    <div class="lb-bar">
+      <button class="lb-arrow" id="lb-prev" onclick="lbMove(-1)">&#8592;</button>
+      <button class="lb-back" onclick="closeLightbox()">Back</button>
+      <button class="lb-arrow" id="lb-next" onclick="lbMove(1)">&#8594;</button>
+    </div>
+  </div>
+
+  <!-- ══ MAIN PAGE ══ -->
+  <div id="main-page">
+    <header>
+      <p class="author-name">Robert James Williams</p>
+    </header>
+
+    <div class="show">
+      <p class="show-title">Voyage of the Dawn Treader</p>
+
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/H8rVGJdfa0M?si=P_rVj_3wEH-TQMBM"
+          title="Voyage of the Dawn Treader"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Description -->
+      <p class="show-description">As part of the production team for the stage adaptation of C.S. Lewis's <em>The Voyage of the Dawn Treader</em>, I designed the set and created the choreography for the Magician's Mansion scene. In the original book, Lewis includes no dialogue as Lucy Pevensie wanders through the Magician's mansion; instead, he provides rich, detailed descriptions of her moving through countless rooms and doorways. Because the play required so many rapid set changes, I developed an abstract choreography piece titled "The Dance of the Doorways."</p>
+
+      <!-- 12 items, 3 per page = 4 pages -->
+      <div class="carousel-outer" id="carousel-1">
+        <div class="carousel-wrapper">
+          <div class="carousel-track" id="track-1">
+            <div class="carousel-item" onclick="openLightbox('1',0)"><img src="assets/images/01_dawn_treader/dt (1).jpg" alt="Dawn Treader 1" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',1)"><img src="assets/images/01_dawn_treader/dt (2).jpg" alt="Dawn Treader 2" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',2)"><img src="assets/images/01_dawn_treader/dt (3).jpg" alt="Dawn Treader 3" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',3)"><img src="assets/images/01_dawn_treader/dt (4).jpg" alt="Dawn Treader 4" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',4)"><img src="assets/images/01_dawn_treader/dt (5).jpg" alt="Dawn Treader 5" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',5)"><img src="assets/images/01_dawn_treader/dt (6).jpg" alt="Dawn Treader 6" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',6)"><img src="assets/images/01_dawn_treader/dt (7).jpg" alt="Dawn Treader 7" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',7)"><img src="assets/images/01_dawn_treader/dt (8).jpg" alt="Dawn Treader 8" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',8)"><img src="assets/images/01_dawn_treader/dt (9).jpg" alt="Dawn Treader 9" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',9)"><img src="assets/images/01_dawn_treader/dt (10).jpg" alt="Dawn Treader 10" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',10)"><img src="assets/images/01_dawn_treader/dt (11).jpg" alt="Dawn Treader 11" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',11)"><img src="assets/images/01_dawn_treader/dt (12).jpg" alt="Dawn Treader 12" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+          </div>
+        </div>
+        <button class="carousel-btn prev" id="prev-1" onclick="movePage('1',-1)">&#8592;</button>
+        <button class="carousel-btn next" id="next-1" onclick="movePage('1', 1)">&#8594;</button>
+      </div>
+      <div class="carousel-dots" id="dots-1"></div>
+      <p class="carousel-counter" id="counter-1"></p>
+    </div>
+
+    <!-- ══ PRIDE AND PREJUDICE ══ -->
+    <div class="show">
+      <p class="show-title">Pride and Prejudice</p>
+
+      <div class="video-frame">
+        <iframe
+          src=""
+          title="Pride and Prejudice"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <p class="show-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Pellentesque habitant morbi tristique senectus et netus malesuada fames turpis egestas integer.</p>
+      <div class="carousel-outer" id="carousel-2">
+        <div class="carousel-wrapper">
+          <div class="carousel-track" id="track-2">
+            <div class="carousel-item" onclick="openLightbox('2',0)"><img src="assets/images/02_pride_prejudice/pp-01.jpg" alt="Pride and Prejudice 1" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',1)"><img src="assets/images/02_pride_prejudice/pp-02.jpg" alt="Pride and Prejudice 2" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',2)"><img src="assets/images/02_pride_prejudice/pp-03.jpg" alt="Pride and Prejudice 3" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',3)"><img src="assets/images/02_pride_prejudice/pp-04.jpg" alt="Pride and Prejudice 4" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',4)"><img src="assets/images/02_pride_prejudice/pp-05.jpg" alt="Pride and Prejudice 5" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',5)"><img src="assets/images/02_pride_prejudice/pp-06.jpg" alt="Pride and Prejudice 6" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',6)"><img src="assets/images/02_pride_prejudice/pp-07.jpg" alt="Pride and Prejudice 7" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',7)"><img src="assets/images/02_pride_prejudice/pp-08.jpg" alt="Pride and Prejudice 8" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',8)"><img src="assets/images/02_pride_prejudice/pp-09.jpg" alt="Pride and Prejudice 9" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',9)"><img src="assets/images/02_pride_prejudice/pp-10.jpg" alt="Pride and Prejudice 10" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',10)"><img src="assets/images/02_pride_prejudice/pp-11.jpg" alt="Pride and Prejudice 11" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',11)"><img src="assets/images/02_pride_prejudice/pp-12.jpg" alt="Pride and Prejudice 12" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+          </div>
+        </div>
+        <button class="carousel-btn prev" id="prev-2" onclick="movePage('2',-1)">&#8592;</button>
+        <button class="carousel-btn next" id="next-2" onclick="movePage('2', 1)">&#8594;</button>
+      </div>
+      <div class="carousel-dots" id="dots-2"></div>
+      <p class="carousel-counter" id="counter-2"></p>
+    </div>
+
+    <!-- ══ PRINCE CASPIAN ══ -->
+    <div class="show">
+      <p class="show-title">Prince Caspian</p>
+
+      <div class="video-frame">
+        <iframe
+          src=""
+          title="Prince Caspian"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <p class="show-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Pellentesque habitant morbi tristique senectus et netus malesuada fames turpis egestas integer.</p>
+      <div class="carousel-outer" id="carousel-3">
+        <div class="carousel-wrapper">
+          <div class="carousel-track" id="track-3">
+            <div class="carousel-item" onclick="openLightbox('3',0)"><img src="assets/images/03_prince_caspian/pc-01.jpg" alt="Prince Caspian 1" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('3',1)"><img src="assets/images/03_prince_caspian/pc-02.jpg" alt="Prince Caspian 2" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('3',2)"><img src="assets/images/03_prince_caspian/pc-03.jpg" alt="Prince Caspian 3" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('3',3)"><img src="assets/images/03_prince_caspian/pc-04.jpg" alt="Prince Caspian 4" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('3',4)"><img src="assets/images/03_prince_caspian/pc-05.jpg" alt="Prince Caspian 5" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('3',5)"><img src="assets/images/03_prince_caspian/pc-06.jpg" alt="Prince Caspian 6" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('3',6)"><img src="assets/images/03_prince_caspian/pc-07.jpg" alt="Prince Caspian 7" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('3',7)"><img src="assets/images/03_prince_caspian/pc-08.jpg" alt="Prince Caspian 8" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('3',8)"><img src="assets/images/03_prince_caspian/pc-09.jpg" alt="Prince Caspian 9" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('3',9)"><img src="assets/images/03_prince_caspian/pc-10.jpg" alt="Prince Caspian 10" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('3',10)"><img src="assets/images/03_prince_caspian/pc-11.jpg" alt="Prince Caspian 11" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('3',11)"><img src="assets/images/03_prince_caspian/pc-12.jpg" alt="Prince Caspian 12" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+          </div>
+        </div>
+        <button class="carousel-btn prev" id="prev-3" onclick="movePage('3',-1)">&#8592;</button>
+        <button class="carousel-btn next" id="next-3" onclick="movePage('3', 1)">&#8594;</button>
+      </div>
+      <div class="carousel-dots" id="dots-3"></div>
+      <p class="carousel-counter" id="counter-3"></p>
+    </div>
+
+    <!-- ══ THE LION, THE WITCH AND THE WARDROBE ══ -->
+    <div class="show">
+      <p class="show-title">The Lion, the Witch and the Wardrobe</p>
+
+      <div class="video-frame">
+        <iframe
+          src=""
+          title="The Lion, the Witch and the Wardrobe"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <p class="show-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Pellentesque habitant morbi tristique senectus et netus malesuada fames turpis egestas integer.</p>
+      <div class="carousel-outer" id="carousel-4">
+        <div class="carousel-wrapper">
+          <div class="carousel-track" id="track-4">
+            <div class="carousel-item" onclick="openLightbox('4',0)"><img src="assets/images/04_lion_witch/lww-01.jpg" alt="Lion Witch Wardrobe 1" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',1)"><img src="assets/images/04_lion_witch/lww-02.jpg" alt="Lion Witch Wardrobe 2" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',2)"><img src="assets/images/04_lion_witch/lww-03.jpg" alt="Lion Witch Wardrobe 3" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',3)"><img src="assets/images/04_lion_witch/lww-04.jpg" alt="Lion Witch Wardrobe 4" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',4)"><img src="assets/images/04_lion_witch/lww-05.jpg" alt="Lion Witch Wardrobe 5" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',5)"><img src="assets/images/04_lion_witch/lww-06.jpg" alt="Lion Witch Wardrobe 6" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',6)"><img src="assets/images/04_lion_witch/lww-07.jpg" alt="Lion Witch Wardrobe 7" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',7)"><img src="assets/images/04_lion_witch/lww-08.jpg" alt="Lion Witch Wardrobe 8" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',8)"><img src="assets/images/04_lion_witch/lww-09.jpg" alt="Lion Witch Wardrobe 9" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',9)"><img src="assets/images/04_lion_witch/lww-10.jpg" alt="Lion Witch Wardrobe 10" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',10)"><img src="assets/images/04_lion_witch/lww-11.jpg" alt="Lion Witch Wardrobe 11" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',11)"><img src="assets/images/04_lion_witch/lww-12.jpg" alt="Lion Witch Wardrobe 12" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+          </div>
+        </div>
+        <button class="carousel-btn prev" id="prev-4" onclick="movePage('4',-1)">&#8592;</button>
+        <button class="carousel-btn next" id="next-4" onclick="movePage('4', 1)">&#8594;</button>
+      </div>
+      <div class="carousel-dots" id="dots-4"></div>
+      <p class="carousel-counter" id="counter-4"></p>
+    </div>
+
+    <footer>© Robert James Williams</footer>
+  </div>
+
+  <script>
+    /* ═══════════════════════════════════════
+       CAROUSEL
+    ═══════════════════════════════════════ */
+    const carousels = {};
+
+    function initCarousel(id) {
+      const track   = document.getElementById('track-' + id);
+      const items   = track.children.length;
+      const perPage = 3;
+      const pages   = Math.ceil(items / perPage);
+      carousels[id] = { page: 0, pages: pages, items: items, perPage: perPage };
+
+      const dotsEl = document.getElementById('dots-' + id);
+      dotsEl.innerHTML = '';
+      for (var i = 0; i < pages; i++) {
+        var d = document.createElement('div');
+        d.className = 'dot' + (i === 0 ? ' active' : '');
+        d.onclick = (function(idx){ return function(){ goToPage(id, idx); }; })(i);
+        dotsEl.appendChild(d);
+      }
+      updateCarousel(id);
+    }
+
+    function updateCarousel(id) {
+      var c     = carousels[id];
+      var track = document.getElementById('track-' + id);
+      track.style.transform = 'translateX(-' + (c.page * 100) + '%)';
+
+      var dots = document.querySelectorAll('#dots-' + id + ' .dot');
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === c.page); });
+
+      var prevBtn = document.getElementById('prev-' + id);
+      var nextBtn = document.getElementById('next-' + id);
+      if (prevBtn) prevBtn.disabled = c.page === 0;
+      if (nextBtn) nextBtn.disabled = c.page === c.pages - 1;
+
+      var first = c.page * c.perPage + 1;
+      var last  = Math.min(first + c.perPage - 1, c.items);
+      var counterEl = document.getElementById('counter-' + id);
+      if (counterEl) counterEl.textContent = first + '–' + last + ' of ' + c.items;
+    }
+
+    function movePage(id, dir) {
+      var c = carousels[id];
+      c.page = Math.max(0, Math.min(c.pages - 1, c.page + dir));
+      updateCarousel(id);
+    }
+
+    function goToPage(id, idx) {
+      carousels[id].page = idx;
+      updateCarousel(id);
+    }
+
+    /* ═══════════════════════════════════════
+       LIGHTBOX
+    ═══════════════════════════════════════ */
+    var lbCarouselId = null;
+    var lbIndex      = 0;
+    var lbItems      = [];
+
+    function openLightbox(carouselId, index) {
+      lbCarouselId = carouselId;
+      lbItems      = Array.from(document.querySelectorAll('#track-' + carouselId + ' .carousel-item'));
+      lbIndex      = index;
+
+      document.getElementById('lightbox').classList.add('open');
+      document.getElementById('main-page').style.display = 'none';
+      renderLightbox();
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.getElementById('main-page').style.display = '';
+    }
+
+    function lbMove(dir) {
+      lbIndex = Math.max(0, Math.min(lbItems.length - 1, lbIndex + dir));
+      renderLightbox();
+    }
+
+    function renderLightbox() {
+      var total  = lbItems.length;
+      var item   = lbItems[lbIndex];
+
+      // Try to get an img src from the item, otherwise show placeholder
+      var img    = item.querySelector('img');
+      var stage  = document.getElementById('lb-stage');
+
+      if (img) {
+        stage.innerHTML = '<img src="' + img.src + '" alt="Image ' + (lbIndex + 1) + '" />';
+      } else {
+        // Replicate placeholder at full size
+        stage.innerHTML =
+          '<div class="lb-placeholder">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">' +
+          '<rect x="3" y="3" width="18" height="18" rx="1"/>' +
+          '<path d="M3 9l4-4 4 4 4-4 4 4"/>' +
+          '<circle cx="8.5" cy="13.5" r="2"/>' +
+          '</svg>' +
+          '<span>Image ' + (lbIndex + 1) + '</span>' +
+          '</div>';
+      }
+
+      document.getElementById('lb-counter').textContent = (lbIndex + 1) + ' / ' + total;
+      document.getElementById('lb-prev').disabled = lbIndex === 0;
+      document.getElementById('lb-next').disabled = lbIndex === total - 1;
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'ArrowLeft')  lbMove(-1);
+      if (e.key === 'ArrowRight') lbMove(1);
+      if (e.key === 'Escape')     closeLightbox();
+    });
+
+    initCarousel('1');
+    initCarousel('2');
+    initCarousel('3');
+    initCarousel('4');
+  </script>
+
+</body>
+</html>
