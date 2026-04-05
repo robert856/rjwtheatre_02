@@ -17,9 +17,13 @@
 
     /* ── HEADER ── */
     header {
-      padding: 3rem 2rem 2rem;
+      padding: 1.25rem 2rem;
       border-bottom: 1px solid #e0e0e0;
       text-align: center;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 100;
     }
     .author-name {
       font-family: 'Bodoni Moda', serif;
@@ -27,8 +31,29 @@
       font-weight: 700;
       letter-spacing: 0.08em;
       color: #111;
-      margin-bottom: 0;
+      margin-bottom: 0.6rem;
+      text-decoration: none;
+      display: block;
     }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #999;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #111; }
+    nav a.active { color: #111; border-bottom: 1px solid #111; padding-bottom: 2px; }
     .site-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.6rem, 4vw, 2.6rem);
@@ -288,6 +313,47 @@
     }
 
     /* ── FOOTER ── */
+    /* ── BRANDS ── */
+    .brands-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem 4rem;
+      border-top: 1px solid #e0e0e0;
+      text-align: center;
+    }
+    .brands-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 1.5rem;
+    }
+    .brands-container {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    .brands-img {
+      width: 100%;
+      display: block;
+    }
+    .brand-link {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: var(--w);
+      height: var(--h);
+      display: block;
+      transition: background 0.2s;
+      border-radius: 4px;
+    }
+    .brand-link:hover {
+      background: rgba(0, 0, 0, 0.06);
+      cursor: pointer;
+    }
+
     footer {
       padding: 2rem;
       text-align: center;
@@ -314,7 +380,12 @@
   <!-- ══ MAIN PAGE ══ -->
   <div id="main-page">
     <header>
-      <p class="author-name">Robert James Williams</p>
+      <a href="index.html" class="author-name">Robert James Williams</a>
+      <nav>
+        <a href="about.html">About Me</a>
+        <a href="index.html" class="active">Theatre Experience</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </header>
 
     <div class="show">
@@ -348,6 +419,11 @@
             <div class="carousel-item" onclick="openLightbox('1',9)"><img src="assets/images/01_dawn_treader/dt (10).jpg" alt="Dawn Treader 10" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
             <div class="carousel-item" onclick="openLightbox('1',10)"><img src="assets/images/01_dawn_treader/dt (11).jpg" alt="Dawn Treader 11" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
             <div class="carousel-item" onclick="openLightbox('1',11)"><img src="assets/images/01_dawn_treader/dt (12).jpg" alt="Dawn Treader 12" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',12)"><img src="assets/images/01_dawn_treader/dt (13).jpg" alt="Dawn Treader 13" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',13)"><img src="assets/images/01_dawn_treader/dt (14).jpg" alt="Dawn Treader 14" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',14)"><img src="assets/images/01_dawn_treader/dt (15).jpg" alt="Dawn Treader 15" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',15)"><img src="assets/images/01_dawn_treader/dt (16).jpg" alt="Dawn Treader 16" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('1',16)"><img src="assets/images/01_dawn_treader/dt (17).jpg" alt="Dawn Treader 17" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
           </div>
         </div>
         <button class="carousel-btn prev" id="prev-1" onclick="movePage('1',-1)">&#8592;</button>
@@ -361,31 +437,18 @@
     <div class="show">
       <p class="show-title">Pride and Prejudice</p>
 
-      <div class="video-frame">
-        <iframe
-          src=""
-          title="Pride and Prejudice"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <p class="show-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Pellentesque habitant morbi tristique senectus et netus malesuada fames turpis egestas integer.</p>
+      <p class="show-description">Jane Austen is such a great storyteller. Her characters and dialogue rank alongside those of Shakespeare, Dickens, and Chaucer. The beautiful settings and houses in <em>Pride and Prejudice</em> become almost characters themselves in her book, and that is exactly what I aimed to achieve with the set design. I wanted each house — Longbourn, Netherfield Park, Pemberley, and Rosings Park — to have its own distinct color palette and emotional feel. The biggest challenge was making seamless set changes within fifteen seconds without blackouts as we transitioned between the different homes. Several people mentioned they even "enjoyed watching the sets change."</p>
       <div class="carousel-outer" id="carousel-2">
         <div class="carousel-wrapper">
           <div class="carousel-track" id="track-2">
-            <div class="carousel-item" onclick="openLightbox('2',0)"><img src="assets/images/02_pride_prejudice/pp-01.jpg" alt="Pride and Prejudice 1" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('2',1)"><img src="assets/images/02_pride_prejudice/pp-02.jpg" alt="Pride and Prejudice 2" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('2',2)"><img src="assets/images/02_pride_prejudice/pp-03.jpg" alt="Pride and Prejudice 3" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('2',3)"><img src="assets/images/02_pride_prejudice/pp-04.jpg" alt="Pride and Prejudice 4" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('2',4)"><img src="assets/images/02_pride_prejudice/pp-05.jpg" alt="Pride and Prejudice 5" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('2',5)"><img src="assets/images/02_pride_prejudice/pp-06.jpg" alt="Pride and Prejudice 6" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('2',6)"><img src="assets/images/02_pride_prejudice/pp-07.jpg" alt="Pride and Prejudice 7" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('2',7)"><img src="assets/images/02_pride_prejudice/pp-08.jpg" alt="Pride and Prejudice 8" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('2',8)"><img src="assets/images/02_pride_prejudice/pp-09.jpg" alt="Pride and Prejudice 9" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('2',9)"><img src="assets/images/02_pride_prejudice/pp-10.jpg" alt="Pride and Prejudice 10" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('2',10)"><img src="assets/images/02_pride_prejudice/pp-11.jpg" alt="Pride and Prejudice 11" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('2',11)"><img src="assets/images/02_pride_prejudice/pp-12.jpg" alt="Pride and Prejudice 12" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',0)"><img src="assets/images/02_pride_prejudice/pp (1).jpg" alt="Pride and Prejudice 1" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',1)"><img src="assets/images/02_pride_prejudice/pp (1).png" alt="Pride and Prejudice 2" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',2)"><img src="assets/images/02_pride_prejudice/pp (2).jpg" alt="Pride and Prejudice 3" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',3)"><img src="assets/images/02_pride_prejudice/pp (3).jpg" alt="Pride and Prejudice 4" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',4)"><img src="assets/images/02_pride_prejudice/pp (4).jpg" alt="Pride and Prejudice 5" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',5)"><img src="assets/images/02_pride_prejudice/pp (5).jpg" alt="Pride and Prejudice 6" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',6)"><img src="assets/images/02_pride_prejudice/pp (6).jpg" alt="Pride and Prejudice 7" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('2',7)"><img src="assets/images/02_pride_prejudice/pp (7).jpg" alt="Pride and Prejudice 8" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
           </div>
         </div>
         <button class="carousel-btn prev" id="prev-2" onclick="movePage('2',-1)">&#8592;</button>
@@ -399,16 +462,7 @@
     <div class="show">
       <p class="show-title">Prince Caspian</p>
 
-      <div class="video-frame">
-        <iframe
-          src=""
-          title="Prince Caspian"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <p class="show-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Pellentesque habitant morbi tristique senectus et netus malesuada fames turpis egestas integer.</p>
+      <p class="show-description">C.S. Lewis's <em>Prince Caspian</em> is a grand adventure featuring the Pevensie children, and bringing it to the stage was an adventure in itself. Working with large moving set pieces in our small theatre, with very limited wing space, was challenging, but that is the fun of theatre. The ruins of the Treasure Room was such a large set piece that I was able to repurpose it later in the play as Aslan's How simply by adding a painting of Aslan in the doorway. The script and support materials were licensed from the Logos Theatre, and their resources and design suggestions were extremely helpful.</p>
       <div class="carousel-outer" id="carousel-3">
         <div class="carousel-wrapper">
           <div class="carousel-track" id="track-3">
@@ -437,31 +491,19 @@
     <div class="show">
       <p class="show-title">The Lion, the Witch and the Wardrobe</p>
 
-      <div class="video-frame">
-        <iframe
-          src=""
-          title="The Lion, the Witch and the Wardrobe"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <p class="show-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Pellentesque habitant morbi tristique senectus et netus malesuada fames turpis egestas integer.</p>
+      <p class="show-description">C.S. Lewis's <em>The Lion, the Witch and the Wardrobe</em> was the first play for which I designed a set. I organized volunteer work days and built the set myself. Of course, the wardrobe was the most fun to design and build. Because of the limited budget, I created Narnia with a more stylized diorama feel. Designing the stone table and the mechanism that would break apart was especially fun. I also made the sleigh do double duty: it was painted black on one side for the White Witch and red on the other for Father Christmas.</p>
       <div class="carousel-outer" id="carousel-4">
         <div class="carousel-wrapper">
           <div class="carousel-track" id="track-4">
-            <div class="carousel-item" onclick="openLightbox('4',0)"><img src="assets/images/04_lion_witch/lww-01.jpg" alt="Lion Witch Wardrobe 1" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('4',1)"><img src="assets/images/04_lion_witch/lww-02.jpg" alt="Lion Witch Wardrobe 2" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('4',2)"><img src="assets/images/04_lion_witch/lww-03.jpg" alt="Lion Witch Wardrobe 3" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('4',3)"><img src="assets/images/04_lion_witch/lww-04.jpg" alt="Lion Witch Wardrobe 4" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('4',4)"><img src="assets/images/04_lion_witch/lww-05.jpg" alt="Lion Witch Wardrobe 5" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('4',5)"><img src="assets/images/04_lion_witch/lww-06.jpg" alt="Lion Witch Wardrobe 6" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('4',6)"><img src="assets/images/04_lion_witch/lww-07.jpg" alt="Lion Witch Wardrobe 7" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('4',7)"><img src="assets/images/04_lion_witch/lww-08.jpg" alt="Lion Witch Wardrobe 8" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('4',8)"><img src="assets/images/04_lion_witch/lww-09.jpg" alt="Lion Witch Wardrobe 9" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('4',9)"><img src="assets/images/04_lion_witch/lww-10.jpg" alt="Lion Witch Wardrobe 10" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('4',10)"><img src="assets/images/04_lion_witch/lww-11.jpg" alt="Lion Witch Wardrobe 11" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
-            <div class="carousel-item" onclick="openLightbox('4',11)"><img src="assets/images/04_lion_witch/lww-12.jpg" alt="Lion Witch Wardrobe 12" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',0)"><img src="assets/images/04_lion_witch/lww (1).jpg" alt="Lion Witch Wardrobe 1" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',1)"><img src="assets/images/04_lion_witch/lww (2).jpg" alt="Lion Witch Wardrobe 2" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',2)"><img src="assets/images/04_lion_witch/lww (3).jpg" alt="Lion Witch Wardrobe 3" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',3)"><img src="assets/images/04_lion_witch/lww (4).jpg" alt="Lion Witch Wardrobe 4" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',4)"><img src="assets/images/04_lion_witch/lww (5).jpg" alt="Lion Witch Wardrobe 5" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',5)"><img src="assets/images/04_lion_witch/lww (6).jpg" alt="Lion Witch Wardrobe 6" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',6)"><img src="assets/images/04_lion_witch/lww (7).jpg" alt="Lion Witch Wardrobe 7" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',7)"><img src="assets/images/04_lion_witch/lww (8).jpg" alt="Lion Witch Wardrobe 8" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
+            <div class="carousel-item" onclick="openLightbox('4',8)"><img src="assets/images/04_lion_witch/lww (9).jpg" alt="Lion Witch Wardrobe 9" /><div class="item-hover"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div></div>
           </div>
         </div>
         <button class="carousel-btn prev" id="prev-4" onclick="movePage('4',-1)">&#8592;</button>
@@ -469,6 +511,22 @@
       </div>
       <div class="carousel-dots" id="dots-4"></div>
       <p class="carousel-counter" id="counter-4"></p>
+    </div>
+
+    <!-- ══ BRANDS ══ -->
+    <div class="brands-section">
+      <p class="brands-title">Brands I Have Worked For</p>
+      <div class="brands-container">
+      <a href="https://habershamhome.com/" target="_blank" class="brand-link" style="--x:0.0%;--y:0.0%;--w:25.0%;--h:50.0%" aria-label="Habersham Home"></a>
+      <a href="https://www.biltmore.com/" target="_blank" class="brand-link" style="--x:25.0%;--y:0.0%;--w:25.0%;--h:50.0%" aria-label="Biltmore"></a>
+      <a href="https://claudemonetgiverny.fr/en/" target="_blank" class="brand-link" style="--x:50.0%;--y:0.0%;--w:25.0%;--h:50.0%" aria-label="Claude Monet Giverny"></a>
+      <a href="https://www.fairmont.com/en/hotels/new-york-city/the-plaza.html?wiz_medium=cpc&wiz_source=google&wiz_campaign=22160014493&gad_source=1&gad_campaignid=22160014493&gbraid=0AAAAA97FndmtonRJkf6vVErVyBoB5N_rL&gclid=Cj0KCQjwkMjOBhC5ARIsADIdb3ep3QZLVwzKc0FYbMn62hqbDIl08MYZn_t82UyfHYWi9vwsdV2GVqgaAliQEALw_wcB" target="_blank" class="brand-link" style="--x:75.0%;--y:0.0%;--w:25.0%;--h:50.0%" aria-label="The Plaza Hotel"></a>
+      <a href="https://www.ambellahome.com/" target="_blank" class="brand-link" style="--x:0.0%;--y:50.0%;--w:25.0%;--h:50.0%" aria-label="Ambella Home"></a>
+      <a href="https://www.ballarddesigns.com/" target="_blank" class="brand-link" style="--x:25.0%;--y:50.0%;--w:25.0%;--h:50.0%" aria-label="Ballard Designs"></a>
+      <a href="https://hearstcastle.org/" target="_blank" class="brand-link" style="--x:50.0%;--y:50.0%;--w:25.0%;--h:50.0%" aria-label="Hearst Castle"></a>
+      <a href="https://austingroupfurniture.com/" target="_blank" class="brand-link" style="--x:75.0%;--y:50.0%;--w:25.0%;--h:50.0%" aria-label="Austin Group"></a>
+      <img src="assets/images/brands_I_have_worked_for.png" alt="Brands I have worked for" class="brands-img" />
+    </div>
     </div>
 
     <footer>© Robert James Williams</footer>

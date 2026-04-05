@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Robert James Williams</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #fff;
+      color: #111;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid #e0e0e0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 100;
+    }
+    .author-name {
+      font-family: 'Bodoni Moda', serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #111;
+      margin-bottom: 0.6rem;
+      text-decoration: none;
+      display: block;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    nav a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #999;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #111; }
+    nav a.active { color: #111; border-bottom: 1px solid #111; padding-bottom: 2px; }
+
+    /* ── ABOUT SECTION ── */
+    .about {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 680px) {
+      .about {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    /* ── HEADSHOT ── */
+    .headshot-wrap {
+      position: sticky;
+      top: 2rem;
+    }
+
+    .headshot-wrap img {
+      width: 100%;
+      display: block;
+      filter: grayscale(100%);
+      transition: filter 0.4s ease;
+    }
+
+    .headshot-wrap img:hover {
+      filter: grayscale(0%);
+    }
+
+    /* ── BIO ── */
+    .bio-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 1.25rem;
+    }
+
+    .bio-text {
+      font-size: clamp(0.875rem, 1.8vw, 1rem);
+      line-height: 1.85;
+      color: #444;
+      margin-bottom: 1.5rem;
+    }
+
+    .bio-text:last-child { margin-bottom: 0; }
+
+    /* ── BRANDS ── */
+    .brands-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    .brands-title {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 1.25rem;
+    }
+    .brands-container {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    .brands-img {
+      width: 100%;
+      display: block;
+    }
+    .brand-link {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: var(--w);
+      height: var(--h);
+      display: block;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .brand-link:hover {
+      background: rgba(0, 0, 0, 0.06);
+      cursor: pointer;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #bbb;
+      border-top: 1px solid #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="author-name" href="index.html">Robert James Williams</a>
+    <nav>
+      <a href="about.html" class="active">About Me</a>
+      <a href="index.html">Theatre Experience</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="about">
+
+    <!-- Headshot -->
+    <div class="headshot-wrap">
+      <img src="assets/images/headshot.jpg" alt="Robert James Williams" />
+    </div>
+
+    <!-- Bio -->
+    <div class="bio">
+
+      <p class="bio-text">For over 25 years, I have worked as a furniture designer and product development executive. I have created products and collections for luxury brands, managing design teams and processes to bring exceptional products from concept to market and through first production runs.</p>
+      <p class="bio-text">I never thought my profession would bleed into my family life. My wife and kids were involved in community theatre, and eventually I started helping out. What began as occasional assistance quickly turned into designing entire sets for shows. This experience sparked a new passion in me: designing immersive storytelling experiences through set design and set choreography. I am now excited to blend my design expertise with the art of theatre.</p>
+    </div>
+
+  </div>
+
+  <div class="brands-section">
+    <p class="brands-title">Brands I Have Worked With</p>
+    <div class="brands-container">
+      <a href="https://habershamhome.com/" target="_blank" class="brand-link" style="--x:0.0%;--y:0.0%;--w:25.0%;--h:50.0%" aria-label="Habersham Home"></a>
+      <a href="https://www.biltmore.com/" target="_blank" class="brand-link" style="--x:25.0%;--y:0.0%;--w:25.0%;--h:50.0%" aria-label="Biltmore"></a>
+      <a href="https://claudemonetgiverny.fr/en/" target="_blank" class="brand-link" style="--x:50.0%;--y:0.0%;--w:25.0%;--h:50.0%" aria-label="Claude Monet Giverny"></a>
+      <a href="https://www.fairmont.com/en/hotels/new-york-city/the-plaza.html?wiz_medium=cpc&wiz_source=google&wiz_campaign=22160014493&gad_source=1&gad_campaignid=22160014493&gbraid=0AAAAA97FndmtonRJkf6vVErVyBoB5N_rL&gclid=Cj0KCQjwkMjOBhC5ARIsADIdb3ep3QZLVwzKc0FYbMn62hqbDIl08MYZn_t82UyfHYWi9vwsdV2GVqgaAliQEALw_wcB" target="_blank" class="brand-link" style="--x:75.0%;--y:0.0%;--w:25.0%;--h:50.0%" aria-label="The Plaza Hotel"></a>
+      <a href="https://www.ambellahome.com/" target="_blank" class="brand-link" style="--x:0.0%;--y:50.0%;--w:25.0%;--h:50.0%" aria-label="Ambella Home"></a>
+      <a href="https://www.ballarddesigns.com/" target="_blank" class="brand-link" style="--x:25.0%;--y:50.0%;--w:25.0%;--h:50.0%" aria-label="Ballard Designs"></a>
+      <a href="https://hearstcastle.org/" target="_blank" class="brand-link" style="--x:50.0%;--y:50.0%;--w:25.0%;--h:50.0%" aria-label="Hearst Castle"></a>
+      <a href="https://austingroupfurniture.com/" target="_blank" class="brand-link" style="--x:75.0%;--y:50.0%;--w:25.0%;--h:50.0%" aria-label="Austin Group"></a>
+      <img src="assets/images/brands_I_have_worked_for.png" alt="Brands I have worked with" class="brands-img" />
+    </div>
+  </div>
+
+  <footer>© Robert James Williams</footer>
+
+</body>
+</html>
